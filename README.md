@@ -18,7 +18,7 @@ This Terraform module creates structured labels for GCP resources with specific 
 ## Example: Labels
 ```hcl
 module "labels" {
-  source = "git::https://github.com/sohanyadav/terraform-gcp-labels.git?ref=v1.0.0"
+  source = "https://github.com/sohanyadav/terraform-gcp-labels.git"
   name        = "labels"
   environment = "test"
   label_order = ["name", "environment"]
@@ -77,25 +77,30 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_attributes"></a> [attributes](#input\_attributes) | Additional attributes (e.g. `1`). | `list(string)` | `[]` | no |
-| <a name="input_delimiter"></a> [delimiter](#input\_delimiter) | Delimiter to be used between `organization`, `name`, `environment` and `attributes`. | `string` | `"-"` | no |
-| <a name="input_enabled"></a> [enabled](#input\_enabled) | Set to false to prevent the module from creating any resources. | `bool` | `true` | no |
+| <a name="input_enabled"></a> [enabled](#input\_enabled) | A boolean flag to enable/disable service-account . | `bool` | `true` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
-| <a name="input_extra_tags"></a> [extra\_tags](#input\_extra\_tags) | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | `map(string)` | `{}` | no |
+| <a name="input_google_kms_crypto_key_enabled"></a> [google\_kms\_crypto\_key\_enabled](#input\_google\_kms\_crypto\_key\_enabled) | Set to false to prevent the module from creating any resources. | `bool` | `true` | no |
+| <a name="input_google_kms_crypto_key_iam_member_enabled"></a> [google\_kms\_crypto\_key\_iam\_member\_enabled](#input\_google\_kms\_crypto\_key\_iam\_member\_enabled) | Set to false to prevent the module from creating any resources. | `bool` | `true` | no |
+| <a name="input_google_kms_key_ring_enabled"></a> [google\_kms\_key\_ring\_enabled](#input\_google\_kms\_key\_ring\_enabled) | Set to false to prevent the module from creating any resources. | `bool` | `true` | no |
+| <a name="input_key_algorithm"></a> [key\_algorithm](#input\_key\_algorithm) | The algorithm to use when creating a version based on this template. See the https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm for possible inputs. | `string` | `"GOOGLE_SYMMETRIC_ENCRYPTION"` | no |
+| <a name="input_key_protection_level"></a> [key\_protection\_level](#input\_key\_protection\_level) | The protection level to use when creating a version based on this template. Default value: "SOFTWARE" Possible values: ["SOFTWARE", "HSM"] | `string` | `"SOFTWARE"` | no |
+| <a name="input_key_rotation_period"></a> [key\_rotation\_period](#input\_key\_rotation\_period) | Generate a new key every time this period passes. | `string` | `"100000s"` | no |
 | <a name="input_label_order"></a> [label\_order](#input\_label\_order) | Label order, e.g. sequence of application name and environment `name`,`environment`,'attribute' [`webserver`,`qa`,`devops`,`public`,] . | `list(any)` | <pre>[<br>  "name",<br>  "environment"<br>]</pre> | no |
-| <a name="input_managedby"></a> [managedby](#input\_managedby) | ManagedBy,sohanyadav'. | `string` | `"sohanyadav'."` | no |
-| <a name="input_name"></a> [name](#input\_name) | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
+| <a name="input_location"></a> [location](#input\_location) | Location for the keyring. | `string` | `"asia"` | no |
+| <a name="input_managedby"></a> [managedby](#input\_managedby) | ManagedBy, opsstation | `string` | `"opsstation"` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of the resource. Provided by the client when the resource is created. | `string` | `""` | no |
+| <a name="input_purpose"></a> [purpose](#input\_purpose) | The immutable purpose of the CryptoKey. Possible values are ENCRYPT\_DECRYPT, ASYMMETRIC\_SIGN, and ASYMMETRIC\_DECRYPT. | `string` | `"ENCRYPT_DECRYPT"` | no |
 | <a name="input_repository"></a> [repository](#input\_repository) | Terraform current module repo | `string` | `""` | no |
+| <a name="input_role"></a> [role](#input\_role) | this role use for permissions | `string` | `""` | no |
+| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | List of comma-separated owners for each key declared in set\_owners\_for. | `list(string)` | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_attributes"></a> [attributes](#output\_attributes) | Normalized attributes. |
-| <a name="output_environment"></a> [environment](#output\_environment) | Normalized environment |
-| <a name="output_id"></a> [id](#output\_id) | Disambiguated ID. |
-| <a name="output_label_order"></a> [label\_order](#output\_label\_order) | Normalized Tag map. |
-| <a name="output_name"></a> [name](#output\_name) | Normalized name. |
-| <a name="output_repository"></a> [repository](#output\_repository) | Terraform current module repo |
-| <a name="output_tags"></a> [tags](#output\_tags) | Normalized Tag map. |
+| <a name="output_id"></a> [id](#output\_id) | n/a |
+| <a name="output_key"></a> [key](#output\_key) | n/a |
+| <a name="output_keyring"></a> [keyring](#output\_keyring) | n/a |
+| <a name="output_keyring_name"></a> [keyring\_name](#output\_keyring\_name) | n/a |
+| <a name="output_keyring_resource"></a> [keyring\_resource](#output\_keyring\_resource) | n/a |
 <!-- END_TF_DOCS -->
