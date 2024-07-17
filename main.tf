@@ -1,6 +1,6 @@
-## Managed By : OpsStation
+## Managed By : sohanyadav
 ## Description : This Script is used to create Transfer Server, Transfer User And label .
-## Copyright @ OpsStation. All Right Reserved.
+## Copyright @ sohanyadav. All Right Reserved.
 
 locals {
   label_order_defaults = {
